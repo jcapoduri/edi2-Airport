@@ -14,8 +14,8 @@ var paths = {
     images: './images/**/*',
     index: './app/index.html',
     partials: ['app/**/*.html', '!app/index.html'],
-    distDev: './public',
-    distProd: './public',
+    distDev: '../../public',
+    distProd: '.../../public',
     distScriptsProd: './public/scripts',
     scriptsDevServer: ['app/**/*.js', '!app/vendors/**/*']
 };

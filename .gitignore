@@ -66,3 +66,4 @@ src/webapp/public/
 src/webapp/node_modules/
 src/webapp/vendors/
 target/
+public/

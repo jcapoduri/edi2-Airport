@@ -23,6 +23,7 @@
     "gulp-livereload": "latest",
     "gulp-load-plugins": "latest",
     "gulp-clean-css": "latest",
+    "gulp-less": "latest",
     "gulp-ng-html2js": "latest",
     "gulp-nodemon": "latest",
     "gulp-order": "latest",

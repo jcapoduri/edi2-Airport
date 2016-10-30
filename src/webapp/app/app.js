@@ -2,15 +2,10 @@
 (function() {
 
   angular.module('EDI2-Airport',  [
-          "angular-loading-bar", 
-          "ngAnimate",
-          "ui.router"/*,
-          "bluefeather.features.fee",
-          "bluefeather.features.charge",
-          "bluefeather.features.workorder",
-          "bluefeather.features.request",
-          "bluefeather.features.dashboard",
-          "bluefeather.shared.resource"*/
+          "angular-loading-bar" 
+          ,"ngAnimate"
+          ,"ui.router"
+          ,'EDI2-Airport.airline'
       ])
       .config(['$routeProvider',
         function($routeProvider) {
