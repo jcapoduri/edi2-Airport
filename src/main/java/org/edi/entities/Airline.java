@@ -4,7 +4,7 @@ import org.edi.entities.AirportEntity;
 
 public class Airline extends AirportEntity {
 	protected String code;
-	protected String description;
+	protected String name;
 
 	public String getCode() {
 		return code;
@@ -14,12 +14,12 @@ public class Airline extends AirportEntity {
 		this.code = code;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String description) {
+		this.name = description;
 	}
 
 	public Airline() throws Exception {
