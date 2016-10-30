@@ -8,15 +8,18 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="corporateEventDao" class="com.example.JdbcCorporateEventDao">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="AirportRepository" class="org.edi.business.AirportRepository">
     </bean>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
+        <!--property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/-->
+        <!--property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="url" value="jdbc:sqlserver://localhost:1433;instance=SQLEXPRESS;integratedSecurity=true"/>
+        <!--property name="username" value="ANNACLETA\jcapo"/>
+        <property name="password" value="Kotipelto.46"/-->
     </bean>
 
     <context:property-placeholder location="jdbc.properties"/>

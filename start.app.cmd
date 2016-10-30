@@ -1,0 +1,1 @@
+java -jar target\Airport-0.1.0.jar

@@ -1,15 +1,22 @@
 package org.edi.entities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.List;
+import java.beans.IntrospectionException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public abstract class AirportEntity {
 	protected Integer id;
-	protected Timestamp    creationDate;
-	protected Timestamp    modificationDate;
-	protected Timestamp    deletionDate;
+	protected Date    creationDate;
+	protected Date    modificationDate;
+	protected Date    deletionDate;
 	protected Boolean isDeleted;
 	
 	public AirportEntity()  throws Exception {
@@ -17,35 +24,39 @@ public abstract class AirportEntity {
 	}
 	
 	public AirportEntity(Integer id)  throws Exception {
-		Date date = new Date();
+		
 		this.id = id;
-		this.creationDate = new Timestamp(date.getTime());
+		this.creationDate = new Date(Calendar.getInstance().toInstant().getEpochSecond());
 		this.modificationDate = null;
 		this.deletionDate = null;
 		this.isDeleted   = false;		
 	}
 
-	public Timestamp getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Timestamp creationDate) {
+	/*public void setCreationDate(Timestamp creationDate) {
+		this.creationDate = creationDate;
+	}*/
+	
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public Timestamp getModificationDate() {
+	public Date getModificationDate() {
 		return modificationDate;
 	}
 
-	public void setModificationDate(Timestamp modificationDate) {
+	public void setModificationDate(Date modificationDate) {
 		this.modificationDate = modificationDate;
 	}
-
-	public Timestamp getDeletionDate() {
+	
+	public Date getDeletionDate() {
 		return deletionDate;
 	}
 
-	public void setDeletionDate(Timestamp deletionDate) {
+	public void setDeletionDate(Date deletionDate) {
 		this.deletionDate = deletionDate;
 	}
 
@@ -65,10 +76,32 @@ public abstract class AirportEntity {
 		return id;
 	}
 	
-	abstract public void save();
+	protected List<Field> getAllFields()  throws IllegalArgumentException, IllegalAccessException {
+		Class<?> clazz = this.getClass();
+		List<Field> fields = new ArrayList<Field>();		
+		while (clazz != null) {			
+			fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+			clazz = clazz.getSuperclass();
+		};
+		return fields;
+	}
 	
-	abstract public void erase();
+	public void loadFromRecordSet(ResultSet rs) throws IllegalArgumentException, IllegalAccessException, IntrospectionException, InvocationTargetException, SQLException {
+		List<Field> fields = this.getAllFields();
+		
+		for (int i = 0; i < fields.size(); ++i)	{			
+			Field field = fields.get(i);
+			field.setAccessible(true);
+			field.set(this, rs.getObject(field.getName()));
+			/*PropertyDescriptor decriptor = new PropertyDescriptor(field.getName(), this.getClass());
+			Method setMethod = decriptor.getWriteMethod();
+			setMethod.invoke(this, rs.getObject(field.getName()));*/			
+		};
+		
+	}
 	
-	abstract public void get();
+	public static String getEntityName() {
+		return "relala";
+	} 
 	
 }
