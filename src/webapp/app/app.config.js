@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 (function() {
 
-  angular.module("Airport")
+  angular.module('Airport')
       .config(['$stateProvider',
         function($stateProvider) {
           var helloState = {

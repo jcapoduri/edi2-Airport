@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 (function() {
   angular
@@ -6,6 +6,6 @@
     .controller('AirlineController', AirlineController);
 
   var AirlineController = function () {
-    
+
   };
 })();
