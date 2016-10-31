@@ -1,8 +1,9 @@
 "use strict";
 
 (function() {
-  angular.module('EDI2-Airport.airline')
-    .controller('Airline.Ctrl', AirlineController);
+  angular
+    .module('Airport.airline')
+    .controller('AirlineController', AirlineController);
 
   var AirlineController = function () {
     
