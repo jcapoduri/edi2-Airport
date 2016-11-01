@@ -18,7 +18,7 @@
           }
 
           var airlineEditState = {
-            name: 'airline',
+            name: 'airline.edit',
             url: '/airline/edit/:id',
             templateUrl: 'modules/airlines/airlines.partial.html'
           }

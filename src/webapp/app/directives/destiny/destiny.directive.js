@@ -3,9 +3,9 @@
 (function() {
   angular
     .module('Airport.airline')
-    .directive('destiny', airlineEditor);
+    .directive('destiny', destinyEditor);
 
-  function airlineEditor () {
+  function destinyEditor () {
     var directive = {
         link: link,
         templateUrl: 'directives/airline/destiny.partial.html',

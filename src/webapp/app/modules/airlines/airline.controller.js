@@ -7,7 +7,7 @@
 
     AirlineController.$inject = ['$scope', 'AirlineResource'];
 
-  var AirlineController = function () {
+  var AirlineController = function ($scope, AirlineResource) {
 
   };
 })();

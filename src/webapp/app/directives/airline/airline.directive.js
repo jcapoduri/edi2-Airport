@@ -10,7 +10,7 @@
         link: link,
         templateUrl: 'directives/airline/airline.partial.html',
         restrict: 'EA',
-        scope = {
+        scope: {
           data: '='
         }
     };
