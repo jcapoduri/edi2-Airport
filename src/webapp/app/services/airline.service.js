@@ -3,9 +3,11 @@
 (function() {
   angular
     .module('Airport.services')
-    .service('AirlineResource', AirlineResource);
+    .factory('AirlineResource', AirlineResource);
 
-  var AirlineResource = function () {
+  AirlineResource.$inject = ['$resource'];
 
+  var AirlineResource = function ($resource) {
+    return $resource('/api/airline/:id');
   };
 })();

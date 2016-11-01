@@ -3,16 +3,13 @@
 (function() {
   angular
     .module('Airport.airline')
-    .directive('airline', airlineEditor);
+    .directive('destiny', airlineEditor);
 
   function airlineEditor () {
     var directive = {
         link: link,
-        templateUrl: 'directives/airline/airline.partial.html',
-        restrict: 'EA',
-        scope = {
-          data: '='
-        }
+        templateUrl: 'directives/airline/destiny.partial.html',
+        restrict: 'EA'
     };
     return directive;
 

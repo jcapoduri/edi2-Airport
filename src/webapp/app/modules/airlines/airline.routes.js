@@ -11,6 +11,21 @@
             templateUrl: 'modules/airlines/airlines.partial.html'
           }
 
-          $stateProvider.state(airlineState);
+          var airlineAddState = {
+            name: 'airline.add',
+            url: '/airline/add',
+            templateUrl: 'modules/airlines/airlines.partial.html'
+          }
+
+          var airlineEditState = {
+            name: 'airline',
+            url: '/airline/edit/:id',
+            templateUrl: 'modules/airlines/airlines.partial.html'
+          }
+
+          $stateProvider
+            .state(airlineState)
+            .state(airlineAddState)
+            .state(airlineEditState);
       }]);
 })();

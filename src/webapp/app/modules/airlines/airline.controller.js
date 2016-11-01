@@ -5,6 +5,8 @@
     .module('Airport.airline')
     .controller('AirlineController', AirlineController);
 
+    AirlineController.$inject = ['$scope', 'AirlineResource'];
+
   var AirlineController = function () {
 
   };
