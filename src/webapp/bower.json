@@ -6,7 +6,8 @@
     "angular": "~1.5.0",
     "bootstrap": "~3.0.0",
     "angular-ui-router": "latest",
-    "angular-resource": "latest",     
+    "angular-resource": "latest",
+    "angular-mocks": "latest",
     "components-font-awesome": "latest",
     "angular-loading-bar": "latest"
   }

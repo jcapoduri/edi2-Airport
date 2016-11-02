@@ -13,13 +13,13 @@
 
           var airlineAddState = {
             name: 'airline.add',
-            url: '/airline/add',
+            url: '/add',
             templateUrl: 'modules/airlines/airlines.partial.html'
           }
 
           var airlineEditState = {
             name: 'airline.edit',
-            url: '/airline/edit/:id',
+            url: '/edit/:id',
             templateUrl: 'modules/airlines/airlines.partial.html'
           }
 

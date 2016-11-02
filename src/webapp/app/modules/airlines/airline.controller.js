@@ -5,9 +5,13 @@
     .module('Airport.airline')
     .controller('AirlineController', AirlineController);
 
-    AirlineController.$inject = ['$scope', 'AirlineResource'];
+  AirlineController.$inject = ['$scope', 'AirlineResource'];
 
-  var AirlineController = function ($scope, AirlineResource) {
-
+  function AirlineController ($scope, AirlineResource) {
+    var vm = this;
+    vm.allairlines = [];
+    AirlineResource.query(function(data){
+      vm.allairlines = data;
+    });
   };
 })();
