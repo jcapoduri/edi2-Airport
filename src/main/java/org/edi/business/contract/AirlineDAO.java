@@ -10,6 +10,7 @@ public interface AirlineDAO {
 	public Airline getById(int id)  throws Exception ;
 	public Airline getByName(String id);
 	public List<Airline> search(String needle);
-	public void save(Airline bean);
+	public Airline save(Airline bean);
+	public void update(Airline bean);
 	public void remove(Airline bean);
 }

@@ -102,8 +102,60 @@ public class AirlinesRepository implements AirlineDAO {
 		return new ArrayList<Airline>();
 	}
 	
-	public void save(Airline bean) {
-		
+	public Airline save(Airline bean) {
+		String sql = "INSERT INTO Airlines (code, name) VALUES (?, ?); SELECT SCOPE_IDENTITY()";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, bean.getCode());
+			ps.setString(2, bean.getName());
+			Airline airport = null;
+			
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				airport = this.getById(rs.getInt(1));
+			}
+			rs.close();
+			ps.close();
+			return airport;
+		} catch (Exception e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	
+	public void update (Airline bean) {
+		String sql = "UPDATE Airlines SET code = ?, name = ?, modificationDate = GETDATE() WHERE id = ?;";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, bean.getCode());
+			ps.setString(2, bean.getName());
+			ps.setInt(3, bean.getId());
+			ps.executeUpdate();
+
+			ps.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
 	}
 	
 	public void remove(Airline bean) {

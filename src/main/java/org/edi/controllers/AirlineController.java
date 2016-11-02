@@ -5,15 +5,17 @@ import java.util.List;
 import org.edi.business.contract.AirlineDAO;
 import org.edi.entities.Airline;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api")
+@EnableAutoConfiguration
+@Controller
+@RequestMapping(value="/api")
 public class AirlineController {
 	@Autowired
 	protected AirlineDAO airlineRepo;
@@ -40,10 +42,11 @@ public class AirlineController {
 		}
     }
 	
-	@RequestMapping(value = "/airline/{airportId}", method=RequestMethod.POST)
-    public void create(@PathVariable int airportId, @RequestBody Airline airline) {
+	@RequestMapping(value = "/airline", method=RequestMethod.POST)
+    public @ResponseBody void create(@RequestBody Airline airline) {
         try {
-			//return this.airportRepo.getById(airportId);
+			this.airlineRepo.save(airline);
+        	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();			
@@ -51,9 +54,10 @@ public class AirlineController {
     }
 	
 	@RequestMapping(value = "/airline/{airlineId}", method=RequestMethod.PUT)
-    public void update(@PathVariable int airlineId, @RequestBody Airline airline) {
+    public @ResponseBody void update(@PathVariable int airlineId, @RequestBody Airline airline) {
         try {
-			//return this.airportRepo.getById(airportId);
+        	airline.setId(airlineId);
+			this.airlineRepo.update(airline);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();			
