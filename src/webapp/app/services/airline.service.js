@@ -9,5 +9,5 @@
 
   function AirlineResource ($resource) {
     return $resource('/api/airline/:id');
-  };
+  }
 })();

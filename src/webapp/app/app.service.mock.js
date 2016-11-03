@@ -57,7 +57,7 @@
         var list = $.grep(this.getData(), function(element, index) {
             var matchAll = true;
             $.each(options, function(optionKey, optionValue) {
-                if(element[optionKey] != optionValue) {
+                if(element[optionKey] !== optionValue) {
                     matchAll = false;
                     return false;
                 }
@@ -91,7 +91,7 @@
         var games = this.getData();
         var match = null;
         for (var i=0; i < games.length; i++) {
-            if(games[i].gameid == gameid) {
+            if(games[i].gameid === gameid) {
                 match = games[i];
                 break;
             }
@@ -108,7 +108,7 @@
         var games = this.getData();
         var match = false;
         for (var i=0; i < games.length; i++) {
-            if(games[i].gameid == gameid) {
+            if(games[i].gameid === gameid) {
                 match = true;
                 games.splice(i, 1);
                 break;

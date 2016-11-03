@@ -13,5 +13,5 @@
     AirlineResource.query(function(data){
       vm.allairlines = data;
     });
-  };
+  }
 })();

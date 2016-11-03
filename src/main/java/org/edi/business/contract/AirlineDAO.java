@@ -13,4 +13,5 @@ public interface AirlineDAO {
 	public Airline save(Airline bean);
 	public void update(Airline bean);
 	public void remove(Airline bean);
+	public void remove(int id);
 }

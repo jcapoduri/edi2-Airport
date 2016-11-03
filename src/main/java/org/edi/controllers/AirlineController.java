@@ -67,7 +67,7 @@ public class AirlineController {
 	@RequestMapping(value = "/airline/{airlineId}", method=RequestMethod.DELETE)
     public void erase(@PathVariable int airlineId) {
         try {
-			//return this.airportRepo.getById(airportId);
+			this.airlineRepo.remove(airlineId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();			

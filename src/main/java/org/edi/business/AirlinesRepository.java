@@ -159,7 +159,49 @@ public class AirlinesRepository implements AirlineDAO {
 	}
 	
 	public void remove(Airline bean) {
-		
+		String sql = "UPDATE Airlines SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, bean.getId());
+			ps.executeUpdate();
+
+			ps.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	
+	public void remove(int airlineId) {
+		String sql = "UPDATE Airlines SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, airlineId);
+			ps.executeUpdate();
+
+			ps.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
 	}
     
 }

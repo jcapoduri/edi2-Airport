@@ -58,4 +58,4 @@
       $httpBackend.whenGET(/directives\//).passThrough();
     });
 
-})()
+})();
