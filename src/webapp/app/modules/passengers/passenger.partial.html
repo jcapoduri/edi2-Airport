@@ -1,0 +1,54 @@
+<h3>Pasajeros</h3>
+<div class="col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-01">
+  <button ui-sref="passenger.add" class="btn btn-primary">
+    Agregar Pasajero
+  </button>
+</div>
+<table class="table table-hover" ng-controller="PassengerController as vm" >
+  <thead>
+    <th>
+      Apellido
+    </th>
+    <th>
+      Nombre
+    </th>
+    <th>
+      Nombre preferido
+    </th>
+    <th>
+      Documento
+    </th>
+    <th>
+      Pasaporte
+    </th>
+    <th>
+      &nbsp;
+    </th>
+  </thead>
+  <tbody ng-repeat="model in vm.allpassengers track by model.id">
+    <tr>
+      <td>
+        {{model.lastname}}
+      </td>
+      <td>
+        {{model.name}}
+      </td>
+      <td>
+        {{model.preferedName}}
+      </td>
+      <td>
+        {{model.document}}
+      </td>
+      <td>
+        {{model.passport}}
+      </td>
+      <td>
+        <div class="pull-right">
+          <a class="btn btn-primary" ui-sref="airline.edit({ id: model.id })"> Editar </a>
+          <a class="btn btn-danger" ng-click="vm.deleteItem(model)"> Eliminar </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div ui-view="modal" class="modal fade" tabindex="-1" role="dialog" id="modalView" autoscroll="false"></div>

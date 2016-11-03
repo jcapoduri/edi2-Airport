@@ -9,8 +9,8 @@
 
   function AirlineEditorController ($scope, $stateParams, $uibModalInstance, AirlineResource) {
     var vm = this;
-    vm.operation = 'Agregar';
     vm.id = $stateParams.id;
+    vm.operation = vm.id ? 'Editar' : 'Agregar';
 
     if (vm.id) {
       vm.airline = AirlineResource.get({id: vm.id});

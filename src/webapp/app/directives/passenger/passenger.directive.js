@@ -2,18 +2,18 @@
 
 (function() {
   angular
-    .module('Airport.destiny')
-    .directive('destiny', destinyEditor);
+    .module('Airport.passenger')
+    .directive('passenger', passengerEditor);
 
-  function destinyEditor () {
+  function passengerEditor () {
     var directive = {
         link: link,
-        templateUrl: 'directives/destiny/destiny.partial.html',
+        templateUrl: 'directives/passenger/passenger.partial.html',
         restrict: 'EA',
         controllerAs: 'vm',
         controller: AirportEditorController,
         scope: {
-          destiny: '=?model'
+          passenger: '=?model'
         },
         bindToController: true
     };
@@ -29,7 +29,7 @@
         var vm = this;
 
         vm.save = function() {
-          vm.destiny.$save();
+          vm.passenger.$save();
           $scope.$emit('save');
         }
 

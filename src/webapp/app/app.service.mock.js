@@ -23,7 +23,8 @@
         }
       ],
       destiny: [],
-      flight: []
+      flight: [],
+      passenger: []
     };
 
     this.getData = function(entity) {
