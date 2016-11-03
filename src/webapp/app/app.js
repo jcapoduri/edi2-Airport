@@ -2,7 +2,7 @@
 
 (function() {
 
-  angular.module('Airport.services', ['ngResource']);
+  angular.module('Airport.services', ['ngResource', 'ui.bootstrap']);
   angular.module('Airport.airline', ['ui.router', ,'ui.bootstrap', 'Airport.services']);
   angular.module('Airport.destiny', ['ui.router','Airport.services']);
   angular.module('Airport.flight', ['ui.router','Airport.services']);

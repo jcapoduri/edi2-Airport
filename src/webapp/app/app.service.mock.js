@@ -26,18 +26,19 @@
       flight: []
     };
 
-    this.getData = function() {
-        return this.data;
+    this.getData = function(entity) {
+        return this.data[entity];
     };
 
     this.setData = function(data) {
         this.data = data;
     };
 
-    this.findOne = function(gameid) {
+    this.findOne = function(entity, entityid) {
         // find the game that matches that id
-        var list = $.grep(this.getData(), function(element, index) {
-            return (element.gameid == gameid);
+        var entityData = this.getData(entity);
+        var list = $.grep(entityData, function(element, index) {
+            return (element.id == entityid);
         });
         if(list.length === 0) {
             return {};
@@ -47,7 +48,7 @@
     };
 
     this.findAll = function(entity) {
-        return this.getData()[entity];
+        return this.getData(entity);
     };
 
     // options parameter is an object with key value pairs
@@ -68,31 +69,31 @@
 
     // add a new data item that does not exist already
     // must compute a new unique id and backfill in
-    this.addOne = function(dataItem) {
+    this.addOne = function(entity, dataItem) {
         // must calculate a unique ID to add the new data
-        var newId = this.newId();
-        dataItem.gameid = newId;
-        this.data.push(dataItem);
+        var newId = this.newId(entity);
+        dataItem.id = newId;
+        this.data[entity].push(dataItem);
         return dataItem;
     };
 
     // return an id to insert a new data item at
-    this.newId = function() {
+    this.newId = function(entity) {
         // find all current ids
-        var currentIds = $.map(this.getData(), function(dataItem) { return dataItem.gameid; });
+        var currentIds = $.map(this.getData(entity), function(dataItem) { return dataItem.id; });
         // since id is numeric, and we will treat like an autoincrement field, find max
         var maxId = Math.max.apply(Math, currentIds);
         // increment by one
         return maxId + 1;
     };
 
-    this.updateOne = function(gameid, dataItem) {
+    this.updateOne = function(entity, entityid, dataItem) {
         // find the game that matches that id
-        var games = this.getData();
+        var data = this.getData(entity);
         var match = null;
-        for (var i=0; i < games.length; i++) {
-            if(games[i].gameid === gameid) {
-                match = games[i];
+        for (var i=0; i < data.length; i++) {
+            if(data[i].id === entityid) {
+                match = data[i];
                 break;
             }
         }
@@ -103,14 +104,14 @@
         return match;
     };
 
-    this.deleteOne = function(gameid) {
+    this.deleteOne = function(entity, entityId) {
         // find the game that matches that id
-        var games = this.getData();
+        var data = this.getData(entity);
         var match = false;
-        for (var i=0; i < games.length; i++) {
-            if(games[i].gameid === gameid) {
+        for (var i=0; i < data.length; i++) {
+            if(data[i].id === entityId) {
                 match = true;
-                games.splice(i, 1);
+                data.splice(i, 1);
                 break;
             }
         }

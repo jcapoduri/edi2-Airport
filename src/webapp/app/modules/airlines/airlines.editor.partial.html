@@ -1,4 +1,8 @@
-<div ng-controller="AirlineEditorController as vm">
-  <h3> {{vm.operation}} aerolinea </h3>
-  <airline></airline>
+<div class="modal-content">
+  <div class="modal-header">
+    <h3> {{vm.operation}} aerolinea </h3>
+  </div>
+  <div class="modal-body">
+    <airline model="vm.airline"></airline>
+  </div>
 </div>

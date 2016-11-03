@@ -8,6 +8,10 @@
   AirlineResource.$inject = ['$resource'];
 
   function AirlineResource ($resource) {
-    return $resource('/api/airline/:id');
+    return $resource('/api/airline/:id', {id: '@id' },{
+      update: {
+        method: 'PUT' // this method issues a PUT request
+      }
+    });
   }
 })();

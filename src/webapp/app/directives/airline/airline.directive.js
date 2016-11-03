@@ -10,14 +10,32 @@
         link: link,
         templateUrl: 'directives/airline/airline.partial.html',
         restrict: 'EA',
+        controllerAs: 'vm',
+        controller: AirportEditorController,
         scope: {
-          data: '='
-        }
+          airline: '=?model'
+        },
+        bindToController: true
     };
     return directive;
 
     function link(scope, element, attrs) {
+    }
 
+    AirportEditorController.$inject = ['$scope'];
+
+    function AirportEditorController($scope) {
+        // Injecting $scope just for comparison
+        var vm = this;
+
+        vm.save = function() {
+          vm.airline.$save();
+          $scope.$emit('save');
+        }
+
+        vm.cancel = function() {
+          $scope.$emit('cancel');
+        }
     }
   }
 

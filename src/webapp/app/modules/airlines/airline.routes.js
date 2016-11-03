@@ -14,14 +14,17 @@
           var airlineAddState = {
             name: 'airline.add',
             url: '/add',
-            onEnter: ['$state', '$uibModal', function($state, $uibModal) {             
+            onEnter: ['$state', '$uibModal', function($state, $uibModal) {
               var modalInstance = $uibModal.open({
                 animation: false,
                 templateUrl: 'modules/airlines/airlines.editor.partial.html',
-                size: 'lg'
+                size: 'lg',
+                controller: 'AirlineEditorController',
+                controllerAs: 'vm',
+                bindToController: true
               });
-              modalInstance.result.finally(function() {
-                $state.go('^');
+              modalInstance.closed.finally(function() {
+                $state.go('^', {}, {reload: true});
               });
             }],
             views:{
@@ -35,7 +38,25 @@
           var airlineEditState = {
             name: 'airline.edit',
             url: '/edit/:id',
-            templateUrl: 'modules/airlines/airlines.editor.partial.html'
+            onEnter: ['$state', '$uibModal', function($state, $uibModal) {
+              var modalInstance = $uibModal.open({
+                animation: false,
+                templateUrl: 'modules/airlines/airlines.editor.partial.html',
+                size: 'lg',
+                controller: 'AirlineEditorController',
+                controllerAs: 'vm',
+                bindToController: true
+              });
+              modalInstance.closed.finally(function() {
+                $state.go('^', {}, {reload: true});
+              });
+            }],
+            views:{
+              'modal': {
+                templateUrl: 'modules/airlines/airlines.editor.partial.html'
+              }
+            },
+            modal: true
           };
 
           $stateProvider

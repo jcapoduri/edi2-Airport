@@ -1,15 +1,24 @@
 {
-  "name": "bluefeather",
+  "name": "aiport",
   "directory": "public/vendors",
   "version": "1.2.0",
   "dependencies": {
     "angular": "~1.5.0",
-    "bootstrap": "~3.0.0",
+    "bootstrap": "~3.3.4",
     "angular-ui-router": "latest",
     "angular-bootstrap": "latest",
     "angular-resource": "latest",
     "angular-mocks": "latest",
     "components-font-awesome": "latest",
     "angular-loading-bar": "latest"
+  },
+  "overrides":{
+    "bootstrap" : {
+         "main": [
+            "less/bootstrap.less",
+            "dist/css/bootstrap.css",
+            "dist/js/bootstrap.js"
+          ]
+    }
   }
 }
