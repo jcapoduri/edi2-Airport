@@ -39,7 +39,7 @@ public class AirlinesRepository implements AirlineDAO {
 			List<Airline> result = new ArrayList<Airline>();
 			Airline airline = null;
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				airline = new Airline();
 				airline.loadFromRecordSet(rs);
 				result.add(airline);

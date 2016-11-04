@@ -1,0 +1,48 @@
+<h3>Vuelos</h3>
+<div class="col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-01">
+  <button ui-sref="flight.add" class="btn btn-primary">
+    Agregar vuelo
+  </button>
+</div>
+<table class="table table-hover" ng-controller="FlightController as vm" >
+  <thead>
+    <th>
+      Codigo
+    </th>
+    <th>
+      Ruta de vuelo
+    </th>
+    <th>
+      Aerolinea
+    </th>
+    <th>
+      trayecto
+    </th>
+    <th>
+      &nbsp;
+    </th>
+  </thead>
+  <tbody ng-repeat="model in vm.allflights track by model.id">
+    <tr>
+      <td>
+        {{model.innerCode}}
+      </td>
+      <td>
+        {{model.idFlightRoute}}
+      </td>
+      <td>
+        {{model.idAirline}}
+      </td>
+      <td>
+        {{model.backwads}}
+      </td>
+      <td>
+        <div class="pull-right">
+          <a class="btn btn-primary" ui-sref="flight.edit({ id: model.id })"> Editar </a>
+          <a class="btn btn-danger" ng-click="vm.deleteItem(model)"> Eliminar </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div ui-view="modal" class="modal fade" tabindex="-1" role="dialog" id="modalView" autoscroll="false"></div>

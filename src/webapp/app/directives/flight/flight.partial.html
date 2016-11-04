@@ -1,0 +1,34 @@
+<div>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="inputCode" class="col-sm-2 control-label">Codigo</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="vm.flight.innerCode" id="inputCode" placeholder="Codigo">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputFlightRoute" class="col-sm-2 control-label">Ruta de vuelo</label>
+      <div class="col-sm-10">
+        <select type="text" class="form-control" ng-options="item.id as item.code for item in vm.flightroutes track by item.id" ng-model="vm.flight.idFlightRoute" id="inputFlightRoute"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAirline" class="col-sm-2 control-label">Aerolinea</label>
+      <div class="col-sm-10">
+        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.airlines track by item.id" ng-model="vm.flight.idAirline" id="inputAirline"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputBackward" class="col-sm-2 control-label">Vuelta</label>
+      <div class="col-sm-10">
+        <input type="checkbox" class="form-control" ng-model="vm.flight.backwards" id="inputBackward">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10 pull-right">
+        <button class="btn btn-primary" ng-click="vm.save()">Salvar</button>
+        <button class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

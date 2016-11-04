@@ -11,7 +11,6 @@
     var vm = this;
 
     vm.allairlines = [];
-    console.log('relala');
     AirlineResource.query(function(data){
       vm.allairlines = data;
     });
@@ -24,7 +23,6 @@
             bodyText: 'Esta a punto de eliminar '+ item.name+', esta usted seguro?'
         };
       alertService.show(alertOptions).then(function() {
-        debugger;
         item.$delete();
       });
     };

@@ -1,9 +1,8 @@
-//$httpBackend
 'use strict';
 
 (function () {
   angular
-    .module('Airport')
+    .module('Airport.mock')
     .run(function BackendMockup ($httpBackend, BackendService) {
       var respondGetAll = function(method, url, data) {
           var entity   = url.split('/')[2];

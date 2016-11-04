@@ -36,7 +36,7 @@ public class ReservationRepository implements ReservationDAO {
 			List<Reservation> result = new ArrayList<Reservation>();
 			Reservation reservation = null;
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				reservation = new Reservation();
 				reservation.loadFromRecordSet(rs);
 				result.add(reservation);

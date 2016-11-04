@@ -37,7 +37,7 @@ public class DestinyRepository implements DestinyDAO {
 			List<Destiny> result = new ArrayList<Destiny>();
 			Destiny destiny = null;
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				destiny = new Destiny();
 				destiny.loadFromRecordSet(rs);
 				result.add(destiny);

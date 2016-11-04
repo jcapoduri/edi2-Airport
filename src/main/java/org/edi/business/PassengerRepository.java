@@ -36,7 +36,7 @@ public class PassengerRepository implements PassengerDAO {
 			List<Passenger> result = new ArrayList<Passenger>();
 			Passenger passenger = null;
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				passenger = new Passenger();
 				passenger.loadFromRecordSet(rs);
 				result.add(passenger);

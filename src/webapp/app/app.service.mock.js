@@ -3,7 +3,7 @@
 (function() {
 
   angular
-    .module('Airport.services')
+    .module('Airport.mock')
     .service('BackendService', BackendService);
 
   BackendService.$inject = [];

@@ -2,17 +2,18 @@
 
 (function() {
   angular
-    .module('Airport.destiny')
-    .controller('DestinyController', DestinyController);
+    .module('Airport.reservation')
+    .controller('ReservationController', ReservationController);
 
-  DestinyController.$inject = ['$scope', 'alertService', 'DestinyResource'];
+  ReservationController.$inject = ['$scope', 'alertService', 'ReservationResource'];
 
-  function DestinyController ($scope, alertService, DestinyResource) {
+  function ReservationController ($scope, alertService, ReservationResource) {
     var vm = this;
 
-    vm.alldestinies = [];
-    DestinyResource.query(function(data){
-      vm.alldestinies = data;
+    vm.allreservations = [];
+    
+    ReservationResource.query(function(data){
+      vm.allairlines = data;
     });
 
     vm.deleteItem = function(item) {

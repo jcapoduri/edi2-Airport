@@ -1,0 +1,22 @@
+<div>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="inputPassenger" class="col-sm-2 control-label">Pasajero</label>
+      <div class="col-sm-10">
+        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.passengers track by item.id" ng-model="vm.reservation.idPassenger" id="inputPassenger"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputFlight" class="col-sm-2 control-label">Vuelo</label>
+      <div class="col-sm-10">
+        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.flights track by item.id" ng-model="vm.reservation.idFlight" id="inputFlight"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10 pull-right">
+        <button class="btn btn-primary" ng-click="vm.save()">Salvar</button>
+        <button class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

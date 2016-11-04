@@ -1,32 +1,32 @@
-<h3>Destinos</h3>
+<h3>Reservas</h3>
 <div class="col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-01">
-  <button ui-sref="destiny.add" class="btn btn-primary">
-    Agregar destino
+  <button ui-sref="reservation.add" class="btn btn-primary pull-right">
+    Agregar Reserva
   </button>
 </div>
-<table class="table table-hover" ng-controller="DestinyController as vm" >
+<table class="table table-hover" ng-controller="ReservationController as vm" >
   <thead>
     <th>
-      Codigo
+      Pasajero
     </th>
     <th>
-      Nombre
+      Vuelo
     </th>
     <th>
       &nbsp;
     </th>
   </thead>
-  <tbody ng-repeat="model in vm.alldestinies track by model.id">
+  <tbody ng-repeat="model in vm.allreservations track by model.id">
     <tr>
       <td>
-        {{model.code}}
+        {{model.idPassenger}}
       </td>
       <td>
-        {{model.name}}
+        {{model.idFlight}}
       </td>
       <td>
         <div class="pull-right">
-          <a class="btn btn-primary" ui-sref="destiny.edit({ id: model.id })"> Editar </a>
+          <a class="btn btn-primary" ui-sref="reservation.edit({ id: model.id })"> Editar </a>
           <a class="btn btn-danger" ng-click="vm.deleteItem(model)"> Eliminar </a>
         </div>
       </td>

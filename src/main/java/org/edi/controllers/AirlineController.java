@@ -53,7 +53,7 @@ public class AirlineController {
 		}
     }
 	
-	@RequestMapping(value = "/airline/{airlineId}", method=RequestMethod.PUT)
+	@RequestMapping(value = "/airline/{airlineId}", method=RequestMethod.POST)
     public @ResponseBody void update(@PathVariable int airlineId, @RequestBody Airline airline) {
         try {
         	airline.setId(airlineId);
@@ -65,12 +65,12 @@ public class AirlineController {
     }
 	
 	@RequestMapping(value = "/airline/{airlineId}", method=RequestMethod.DELETE)
-    public void erase(@PathVariable int airlineId) {
-        try {
-			this.airlineRepo.remove(airlineId);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();			
-		}
+    public @ResponseBody  void erase(@PathVariable int airlineId) {
+      try {
+  			this.airlineRepo.remove(airlineId);
+  		} catch (Exception e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();			
+  		}
     }
 }

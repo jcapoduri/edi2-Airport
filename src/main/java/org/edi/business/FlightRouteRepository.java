@@ -36,7 +36,7 @@ public class FlightRouteRepository implements FlightRouteDAO {
 			List<FlightRoute> result = new ArrayList<FlightRoute>();
 			FlightRoute route = null;
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				route = new FlightRoute();
 				route.loadFromRecordSet(rs);
 				result.add(route);
