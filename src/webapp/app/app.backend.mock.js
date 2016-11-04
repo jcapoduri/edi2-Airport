@@ -76,6 +76,13 @@
       $httpBackend.whenPOST(/\/api\/passenger\/\d+/).respond(respondUpdateOne);
       $httpBackend.whenDELETE(/\/api\/passenger\/\d+/).respond(responseDeleteOne);
 
+      // flightroute
+      $httpBackend.whenGET('/api/flightroute').respond(respondGetAll);
+      $httpBackend.whenGET(/\/api\/flightroute\/\d+/).respond(respondGetOne);
+      $httpBackend.whenPOST('/api/flightroute').respond(respondCreateOne);
+      $httpBackend.whenPOST(/\/api\/flightroute\/\d+/).respond(respondUpdateOne);
+      $httpBackend.whenDELETE(/\/api\/flightroute\/\d+/).respond(responseDeleteOne);
+
 
 
       $httpBackend.whenGET(/modules\//).passThrough();

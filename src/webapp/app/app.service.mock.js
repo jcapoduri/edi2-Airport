@@ -22,9 +22,21 @@
           name: 'LATAM'
         }
       ],
-      destiny: [],
+      destiny: [
+        {
+          id: 1,
+          code: 'BHI',
+          name: 'Bahia Blanca'
+        },
+        {
+          id: 2,
+          code: 'BAI',
+          name: 'Buenos Aires'
+        }
+      ],
       flight: [],
-      passenger: []
+      passenger: [],
+      flightroute: []
     };
 
     this.getData = function(entity) {
@@ -85,7 +97,7 @@
         // since id is numeric, and we will treat like an autoincrement field, find max
         var maxId = Math.max.apply(Math, currentIds);
         // increment by one
-        return maxId + 1;
+        return isNaN(maxId) ? 1 : maxId + 1;
     };
 
     this.updateOne = function(entity, entityid, dataItem) {

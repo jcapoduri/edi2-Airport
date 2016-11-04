@@ -2,11 +2,12 @@
 
 (function() {
 
-  angular.module('Airport.services', ['ngResource', 'ui.bootstrap']);
-  angular.module('Airport.airline', ['ui.router', ,'ui.bootstrap', 'Airport.services']);
-  angular.module('Airport.destiny', ['ui.router', ,'ui.bootstrap', 'Airport.services']);
-  angular.module('Airport.flight', ['ui.router', ,'ui.bootstrap', 'Airport.services']);
-  angular.module('Airport.passenger', ['ui.router', ,'ui.bootstrap', 'Airport.services']);
+  angular.module('Airport.services',    ['ngResource', 'ui.bootstrap']);
+  angular.module('Airport.airline',     ['ui.router', ,'ui.bootstrap', 'Airport.services']);
+  angular.module('Airport.destiny',     ['ui.router', ,'ui.bootstrap', 'Airport.services']);
+  angular.module('Airport.flight',      ['ui.router', ,'ui.bootstrap', 'Airport.services']);
+  angular.module('Airport.flightRoute', ['ui.router', ,'ui.bootstrap', 'Airport.services']);
+  angular.module('Airport.passenger',   ['ui.router', ,'ui.bootstrap', 'Airport.services']);
 
   angular.module('Airport',  [
     'angular-loading-bar',
@@ -18,6 +19,7 @@
     'Airport.airline',
     'Airport.destiny',
     'Airport.passenger',
-    'Airport.flight'
+    'Airport.flight',
+    'Airport.flightRoute'
   ]);
 })();

@@ -25,7 +25,6 @@
     AirportEditorController.$inject = ['$scope'];
 
     function AirportEditorController($scope) {
-        // Injecting $scope just for comparison
         var vm = this;
 
         vm.save = function() {

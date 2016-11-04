@@ -16,7 +16,7 @@
       vm.destiny = DestinyResource.get({id: vm.id});
     } else {
       vm.destiny = new DestinyResource();
-    }
+    };
 
     $scope.$on('cancel', $uibModalInstance.close);
     $scope.$on('save', $uibModalInstance.close);
