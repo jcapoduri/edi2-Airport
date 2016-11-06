@@ -2,6 +2,7 @@ package org.edi.controllers;
 
 import java.util.List;
 
+import org.edi.business.contract.IFlightRouteManager;
 import org.edi.entities.FlightRoute;
 import org.edi.io.contract.FlightRouteDAO;
 import org.springframework.beans.factory.annotation.Autowired;

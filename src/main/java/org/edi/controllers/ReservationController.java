@@ -2,6 +2,7 @@ package org.edi.controllers;
 
 import java.util.List;
 
+import org.edi.business.contract.IReservationManager;
 import org.edi.entities.Reservation;
 import org.edi.io.contract.ReservationDAO;
 import org.springframework.beans.factory.annotation.Autowired;

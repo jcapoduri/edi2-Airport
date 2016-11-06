@@ -2,8 +2,8 @@ package org.edi.controllers;
 
 import java.util.List;
 
+import org.edi.business.contract.IFlightManager;
 import org.edi.entities.Flight;
-import org.edi.io.contract.FlightDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;

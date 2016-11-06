@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.edi.entities.Flight;
-import org.edi.entities.FlightRoute;
 import org.edi.io.contract.FlightDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

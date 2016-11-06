@@ -1,4 +1,4 @@
-package org.edi.entity.contract;
+package org.edi.business.contract;
 
 import java.util.List;
 

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.edi.entities.Destiny;
 import org.edi.entities.FlightRoute;
 import org.edi.io.contract.FlightRouteDAO;
 import org.springframework.beans.factory.annotation.Autowired;

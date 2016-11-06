@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.edi.entities.Airline;
 import org.edi.entities.Passenger;
 import org.edi.io.contract.PassengerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
