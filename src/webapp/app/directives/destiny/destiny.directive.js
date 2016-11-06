@@ -28,8 +28,10 @@
         var vm = this;
 
         vm.save = function() {
-          vm.destiny.$save();
-          $scope.$emit('save');
+          if (!$scope.destinyForm.$invalid) {
+            vm.destiny.$save();
+            $scope.$emit('save');
+          }
         }
 
         vm.cancel = function() {

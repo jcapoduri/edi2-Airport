@@ -29,8 +29,10 @@
         var vm = this;
 
         vm.save = function() {
-          vm.passenger.$save();
-          $scope.$emit('save');
+          if (!$scope.passengerForm.$invalid) {
+            vm.passenger.$save();
+            $scope.$emit('save');
+          };
         }
 
         vm.cancel = function() {

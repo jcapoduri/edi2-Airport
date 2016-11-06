@@ -1,21 +1,26 @@
 <div>
-  <form class="form-horizontal">
+  <form class="form-horizontal" name="flightForm">
     <div class="form-group">
       <label for="inputCode" class="col-sm-2 control-label">Codigo</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="vm.flight.innerCode" id="inputCode" placeholder="Codigo">
+        <input type="text" class="form-control" ng-model="vm.flight.innerCode" id="inputCode" name="inputCode" placeholder="Codigo">
+        <p ng-show="flightForm.inputCode.$invalid" class="help-block">el codigo es requerido.</p>
+        <p ng-show="flightForm.inputCode.$error.maxlength" class="help-block">El codigo es muy largo.</p>
       </div>
     </div>
     <div class="form-group">
       <label for="inputFlightRoute" class="col-sm-2 control-label">Ruta de vuelo</label>
       <div class="col-sm-10">
-        <select type="text" class="form-control" ng-options="item.id as item.code for item in vm.flightroutes track by item.id" ng-model="vm.flight.idFlightRoute" id="inputFlightRoute"></select>
+        <select type="text" class="form-control" ng-options="item.id as item.code for item in vm.flightroutes track by item.id" ng-model="vm.flight.idFlightRoute" id="inputFlightRoute" name="inputFlightRoute" required>
+        </select>
+        <p ng-show="flightForm.inputFlightRoute.$invalid" class="help-block">la ruta de vuelo es requerida.</p>
       </div>
     </div>
     <div class="form-group">
       <label for="inputAirline" class="col-sm-2 control-label">Aerolinea</label>
       <div class="col-sm-10">
-        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.airlines track by item.id" ng-model="vm.flight.idAirline" id="inputAirline"></select>
+        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.airlines track by item.id" ng-model="vm.flight.idAirline" id="inputAirline" name="inputAirline"></select>
+        <p ng-show="flightForm.inputFlightRoute.$invalid" class="help-block">la aerolinea es requerida.</p>
       </div>
     </div>
     <div class="form-group">
@@ -26,7 +31,7 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10 pull-right">
-        <button class="btn btn-primary" ng-click="vm.save()">Salvar</button>
+        <button class="btn btn-primary" ng-click="vm.save()" ng-disabled="$scope.flightForm.$invalid">Salvar</button>
         <button class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
       </div>
     </div>

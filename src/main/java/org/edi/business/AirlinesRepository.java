@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.edi.business.contract.AirlineDAO;
+import org.edi.controllers.exceptions.AirportBasicException;
 import org.edi.entities.Airline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -10,7 +10,8 @@
     "angular-resource": "latest",
     "angular-mocks": "latest",
     "components-font-awesome": "latest",
-    "angular-loading-bar": "latest"
+    "angular-loading-bar": "latest",
+    "toastr": "latest"
   },
   "overrides":{
     "bootstrap" : {

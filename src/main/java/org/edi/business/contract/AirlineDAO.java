@@ -2,8 +2,8 @@ package org.edi.business.contract;
 
 
 import java.util.List;
+
 import org.edi.entities.Airline;
-import org.springframework.http.ResponseEntity;
 
 public interface AirlineDAO {
 	public List<Airline> getAll() throws Exception;

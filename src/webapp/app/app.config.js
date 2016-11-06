@@ -22,5 +22,8 @@
         }])
       .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = true;
+      }])
+      .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push('httpErrorInterceptor');
       }]);
 })();

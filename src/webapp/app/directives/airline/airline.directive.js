@@ -29,8 +29,10 @@
         var vm = this;
 
         vm.save = function() {
-          vm.airline.$save();
-          $scope.$emit('save');
+          if (!$scope.airlineForm.$invalid) {
+            vm.airline.$save();
+            $scope.$emit('save');
+          };
         }
 
         vm.cancel = function() {
