@@ -1,4 +1,4 @@
-package org.edi.business;
+package org.edi.io;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.edi.business.contract.ReservationDAO;
 import org.edi.entities.FlightRoute;
 import org.edi.entities.Reservation;
+import org.edi.io.contract.ReservationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

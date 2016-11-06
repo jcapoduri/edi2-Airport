@@ -2,9 +2,10 @@ package org.edi.controllers;
 
 import java.util.List;
 
-import org.edi.business.contract.AirlineDAO;
+import org.edi.business.contract.IAirlineManager;
 import org.edi.controllers.exceptions.AirportBasicException;
 import org.edi.entities.Airline;
+import org.edi.io.contract.AirlineDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/api")
 public class AirlineController {
 	@Autowired
-	protected AirlineDAO airlineRepo;
+	protected IAirlineManager airlineRepo;
 	
 	@RequestMapping(value = "/airline", method=RequestMethod.GET)
     public @ResponseBody List<Airline> get() throws AirportBasicException {

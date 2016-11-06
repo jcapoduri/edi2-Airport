@@ -2,8 +2,8 @@ package org.edi.controllers;
 
 import java.util.List;
 
-import org.edi.business.contract.FlightDAO;
 import org.edi.entities.Flight;
+import org.edi.io.contract.FlightDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/api")
 public class FlightController {
 	@Autowired
-	protected FlightDAO flightRepo;
+	protected IFlightManager flightRepo;
 	
 	@RequestMapping(value = "/flight", method=RequestMethod.GET)
     public @ResponseBody List<Flight> get() {

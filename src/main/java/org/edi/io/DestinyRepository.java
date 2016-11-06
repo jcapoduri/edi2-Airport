@@ -1,4 +1,4 @@
-package org.edi.business;
+package org.edi.io;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.edi.business.contract.DestinyDAO;
 import org.edi.entities.Airline;
 import org.edi.entities.Destiny;
+import org.edi.io.contract.DestinyDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

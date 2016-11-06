@@ -1,4 +1,4 @@
-package org.edi.business;
+package org.edi.io;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.edi.business.contract.FlightRouteDAO;
-import org.edi.entities.Destiny;
-import org.edi.entities.FlightRoute;
+import org.edi.entities.Airline;
+import org.edi.entities.Passenger;
+import org.edi.io.contract.PassengerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FlightRouteRepository implements FlightRouteDAO {
+public class PassengerRepository implements PassengerDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate; 
 	
@@ -26,20 +26,20 @@ public class FlightRouteRepository implements FlightRouteDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 	@Override
-	public List<FlightRoute> getAll() throws Exception {
-		String sql = "SELECT * FROM FlightRoutes WHERE isDeleted = 0";
+	public List<Passenger> getAll() throws Exception {
+		String sql = "SELECT * FROM Passengers WHERE isDeleted = 0";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			List<FlightRoute> result = new ArrayList<FlightRoute>();
-			FlightRoute route = null;
+			List<Passenger> result = new ArrayList<Passenger>();
+			Passenger passenger = null;
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				route = new FlightRoute();
-				route.loadFromRecordSet(rs);
-				result.add(route);
+				passenger = new Passenger();
+				passenger.loadFromRecordSet(rs);
+				result.add(passenger);
 			}
 			rs.close();
 			ps.close();
@@ -57,23 +57,23 @@ public class FlightRouteRepository implements FlightRouteDAO {
 	}
 
 	@Override
-	public FlightRoute getById(int id) throws Exception {
-		String sql = "SELECT * FROM FlightRoutes WHERE isDeleted = 0 AND id = ?";
+	public Passenger getById(int id) throws Exception {
+		String sql = "SELECT * FROM Passengers WHERE isDeleted = 0 AND id = ?";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
-			FlightRoute route = null;
+			Passenger passenger = null;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				route = new FlightRoute();
-				route.loadFromRecordSet(rs);
+				passenger = new Passenger();
+				passenger.loadFromRecordSet(rs);
 			}
 			rs.close();
 			ps.close();
-			return route;
+			return passenger;
 		} catch (SQLException e) {
 			System.out.println(e.toString());			
 			throw new RuntimeException(e);
@@ -87,38 +87,42 @@ public class FlightRouteRepository implements FlightRouteDAO {
 	}
 
 	@Override
-	public FlightRoute getByName(String id) {
+	public Passenger getByName(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FlightRoute> search(String needle) {
+	public List<Passenger> search(String needle) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public FlightRoute save(FlightRoute bean) {
-		String sql = "INSERT INTO FlightRoutes (code, origin, destiny) VALUES (?, ?, ?); SELECT SCOPE_IDENTITY()";
+	public Passenger save(Passenger bean) {
+		String sql = "INSERT INTO Passengers (name, lastname, preferedName, email, telephone, passport, document) VALUES (?, ?, ?, ?, ?, ?, ?); SELECT SCOPE_IDENTITY()";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, bean.getCode());
-			ps.setInt(2, bean.getOrigin());
-			ps.setInt(3, bean.getDestiny());
-			FlightRoute route = null;
+			PreparedStatement ps = conn.prepareStatement(sql);			
+			ps.setString(1, bean.getName());
+			ps.setString(2, bean.getLastname());
+			ps.setString(3, bean.getPreferedName());
+			ps.setString(4, bean.getEmail());
+			ps.setString(5, bean.getTelephone());
+			ps.setString(6, bean.getPassport());
+			ps.setString(7, bean.getDocument());
+			Passenger passenger = null;
 			
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) {
-				route = this.getById(rs.getInt(1));
+				passenger = this.getById(rs.getInt(1));
 			}
 			rs.close();
 			ps.close();
-			return route;
+			return passenger;
 		} catch (Exception e) {
 			System.out.println(e.toString());			
 			throw new RuntimeException(e);
@@ -132,17 +136,21 @@ public class FlightRouteRepository implements FlightRouteDAO {
 	}
 
 	@Override
-	public void update(FlightRoute bean) {
-		String sql = "UPDATE FlightRoutes SET code = ?, origin = ?, destiny = ?, modificationDate = GETDATE() WHERE id = ?;";
+	public void update(Passenger bean) {
+		String sql = "UPDATE Passengers SET name = ?, lastname = ?, preferedName = ?, email = ?, telephone = ?, passport = ?, document = ?, modificationDate = GETDATE() WHERE id = ?;";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, bean.getCode());
-			ps.setInt(2, bean.getOrigin());
-			ps.setInt(3, bean.getDestiny());
-			ps.setInt(4, bean.getId());
+			ps.setString(1, bean.getName());
+			ps.setString(2, bean.getLastname());
+			ps.setString(3, bean.getPreferedName());
+			ps.setString(4, bean.getEmail());
+			ps.setString(5, bean.getTelephone());
+			ps.setString(6, bean.getPassport());
+			ps.setString(7, bean.getDocument());
+			ps.setInt(8, bean.getId());
 			ps.executeUpdate();
 
 			ps.close();
@@ -159,8 +167,8 @@ public class FlightRouteRepository implements FlightRouteDAO {
 	}
 
 	@Override
-	public void remove(FlightRoute bean) {
-		String sql = "UPDATE FlightRoutes SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
+	public void remove(Passenger bean) {
+		String sql = "UPDATE Passengers SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
 		Connection conn = null;
 
 		try {
@@ -184,7 +192,7 @@ public class FlightRouteRepository implements FlightRouteDAO {
 
 	@Override
 	public void remove(int id) {
-		String sql = "UPDATE FlightRoutes SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
+		String sql = "UPDATE Passengers SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
 		Connection conn = null;
 
 		try {

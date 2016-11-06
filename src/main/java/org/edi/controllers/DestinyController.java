@@ -2,8 +2,8 @@ package org.edi.controllers;
 
 import java.util.List;
 
-import org.edi.business.contract.DestinyDAO;
 import org.edi.entities.Destiny;
+import org.edi.io.contract.DestinyDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/api")
 public class DestinyController {
 	@Autowired
-	protected DestinyDAO destinyRepo;
+	protected IDestinyManager destinyRepo;
 	
 	@RequestMapping(value = "/destiny", method=RequestMethod.GET)
     public @ResponseBody List<Destiny> get() {

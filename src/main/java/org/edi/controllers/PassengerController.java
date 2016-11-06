@@ -2,8 +2,8 @@ package org.edi.controllers;
 
 import java.util.List;
 
-import org.edi.business.contract.PassengerDAO;
 import org.edi.entities.Passenger;
+import org.edi.io.contract.PassengerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/api")
 public class PassengerController {
 	@Autowired
-	protected PassengerDAO passengerRepo;
+	protected IPassengerManager passengerRepo;
 	
 	@RequestMapping(value = "/passenger", method=RequestMethod.GET)
     public @ResponseBody List<Passenger> get() {

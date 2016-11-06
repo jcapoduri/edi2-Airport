@@ -1,4 +1,4 @@
-package org.edi.business;
+package org.edi.io;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

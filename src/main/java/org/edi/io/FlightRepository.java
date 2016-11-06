@@ -1,4 +1,4 @@
-package org.edi.business;
+package org.edi.io;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.edi.business.contract.PassengerDAO;
-import org.edi.entities.Airline;
-import org.edi.entities.Passenger;
+import org.edi.entities.Flight;
+import org.edi.entities.FlightRoute;
+import org.edi.io.contract.FlightDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PassengerRepository implements PassengerDAO {
+public class FlightRepository implements FlightDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate; 
 	
@@ -25,21 +25,22 @@ public class PassengerRepository implements PassengerDAO {
         this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+	
 	@Override
-	public List<Passenger> getAll() throws Exception {
-		String sql = "SELECT * FROM Passengers WHERE isDeleted = 0";
+	public List<Flight> getAll() throws Exception {
+		String sql = "SELECT * FROM Flights WHERE isDeleted = 0";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			List<Passenger> result = new ArrayList<Passenger>();
-			Passenger passenger = null;
+			List<Flight> result = new ArrayList<Flight>();
+			Flight flight = null;
 			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				passenger = new Passenger();
-				passenger.loadFromRecordSet(rs);
-				result.add(passenger);
+			if (rs.next()) {
+				flight = new Flight();
+				flight.loadFromRecordSet(rs);
+				result.add(flight);
 			}
 			rs.close();
 			ps.close();
@@ -57,23 +58,23 @@ public class PassengerRepository implements PassengerDAO {
 	}
 
 	@Override
-	public Passenger getById(int id) throws Exception {
-		String sql = "SELECT * FROM Passengers WHERE isDeleted = 0 AND id = ?";
+	public Flight getById(int id) throws Exception {
+		String sql = "SELECT * FROM Flights WHERE isDeleted = 0 AND id = ?";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
-			Passenger passenger = null;
+			Flight flight = null;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				passenger = new Passenger();
-				passenger.loadFromRecordSet(rs);
+				flight = new Flight();
+				flight.loadFromRecordSet(rs);
 			}
 			rs.close();
 			ps.close();
-			return passenger;
+			return flight;
 		} catch (SQLException e) {
 			System.out.println(e.toString());			
 			throw new RuntimeException(e);
@@ -87,70 +88,64 @@ public class PassengerRepository implements PassengerDAO {
 	}
 
 	@Override
-	public Passenger getByName(String id) {
+	public Flight getByName(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Passenger> search(String needle) {
+	public List<Flight> search(String needle) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Passenger save(Passenger bean) {
-		String sql = "INSERT INTO Passengers (name, lastname, preferedName, email, telephone, passport, document) VALUES (?, ?, ?, ?, ?, ?, ?); SELECT SCOPE_IDENTITY()";
-		Connection conn = null;
-
-		try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);			
-			ps.setString(1, bean.getName());
-			ps.setString(2, bean.getLastname());
-			ps.setString(3, bean.getPreferedName());
-			ps.setString(4, bean.getEmail());
-			ps.setString(5, bean.getTelephone());
-			ps.setString(6, bean.getPassport());
-			ps.setString(7, bean.getDocument());
-			Passenger passenger = null;
-			
-			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			if (rs.next()) {
-				passenger = this.getById(rs.getInt(1));
-			}
-			rs.close();
-			ps.close();
-			return passenger;
-		} catch (Exception e) {
-			System.out.println(e.toString());			
-			throw new RuntimeException(e);
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {}
-			}
-		}
-	}
-
-	@Override
-	public void update(Passenger bean) {
-		String sql = "UPDATE Passengers SET name = ?, lastname = ?, preferedName = ?, email = ?, telephone = ?, passport = ?, document = ?, modificationDate = GETDATE() WHERE id = ?;";
+	public Flight save(Flight bean) {
+		String sql = "INSERT INTO Flights (innerCode, idFlightRoute, idAirline, backwads) VALUES (?, ?, ?, ?); SELECT SCOPE_IDENTITY()";
 		Connection conn = null;
 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, bean.getName());
-			ps.setString(2, bean.getLastname());
-			ps.setString(3, bean.getPreferedName());
-			ps.setString(4, bean.getEmail());
-			ps.setString(5, bean.getTelephone());
-			ps.setString(6, bean.getPassport());
-			ps.setString(7, bean.getDocument());
-			ps.setInt(8, bean.getId());
+			ps.setString(1, bean.getInnerCode());
+			ps.setInt(2, bean.getIdFlightRoute());
+			ps.setInt(3, bean.getIdAirline());
+			ps.setBoolean(4,  bean.getBackwards());
+			Flight flight = null;
+			
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			while (rs.next()) {
+				flight = this.getById(rs.getInt(1));
+			}
+			rs.close();
+			ps.close();
+			return flight;
+		} catch (Exception e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+
+	@Override
+	public void update(Flight bean) {
+		String sql = "UPDATE Flights SET innerCode = ?, idFlightRoute = ?, idAirline = ?, backwads = ?, modificationDate = GETDATE() WHERE id = ?;";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, bean.getInnerCode());
+			ps.setInt(2, bean.getIdFlightRoute());
+			ps.setInt(3, bean.getIdAirline());
+			ps.setBoolean(4,  bean.getBackwards());
+			ps.setInt(5, bean.getId());
 			ps.executeUpdate();
 
 			ps.close();
@@ -167,8 +162,8 @@ public class PassengerRepository implements PassengerDAO {
 	}
 
 	@Override
-	public void remove(Passenger bean) {
-		String sql = "UPDATE Passengers SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
+	public void remove(Flight bean) {
+		String sql = "UPDATE Flights SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
 		Connection conn = null;
 
 		try {
@@ -192,7 +187,7 @@ public class PassengerRepository implements PassengerDAO {
 
 	@Override
 	public void remove(int id) {
-		String sql = "UPDATE Passengers SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
+		String sql = "UPDATE Flighs SET deletionDate = GETDATE(), isDeleted = 1 WHERE id = ?;";
 		Connection conn = null;
 
 		try {

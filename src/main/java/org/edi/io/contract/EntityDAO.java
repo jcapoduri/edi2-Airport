@@ -1,4 +1,4 @@
-package org.edi.business.contract;
+package org.edi.io.contract;
 
 import org.edi.entities.AirportEntity;
 
