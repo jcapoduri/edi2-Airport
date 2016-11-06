@@ -11,47 +11,47 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReservationManager implements IReservationManager {
   @Autowired
-  protected ReservationDAO airlineRepository; 
+  protected ReservationDAO rservationRepository; 
 
   @Override
   public List<Reservation> getAll() throws Exception {
-    return this.airlineRepository.getAll();
+    return this.rservationRepository.getAll();
   }
 
   @Override
   public Reservation getById(int id) throws Exception {
-    return this.airlineRepository.getById(id);
+    return this.rservationRepository.getById(id);
   }
 
   @Override
   public Reservation getByName(String id) {
-    return this.airlineRepository.getByName(id);
+    return this.rservationRepository.getByName(id);
   }
 
   @Override
   public List<Reservation> search(String needle) {
-    return this.airlineRepository.search(needle);
+    return this.rservationRepository.search(needle);
   }
 
   @Override
   public Reservation save(Reservation bean) {
-    return this.airlineRepository.save(bean);
+    return this.rservationRepository.save(bean);
   }
 
   @Override
   public void update(Reservation bean) {
-    this.airlineRepository.update(bean);
+    this.rservationRepository.update(bean);
 
   }
 
   @Override
   public void remove(Reservation bean) {
-    this.airlineRepository.remove(bean);
+    this.rservationRepository.remove(bean);
   }
 
   @Override
   public void remove(int id) {
-    this.airlineRepository.remove(id);
+    this.rservationRepository.remove(id);
   }
 
 }

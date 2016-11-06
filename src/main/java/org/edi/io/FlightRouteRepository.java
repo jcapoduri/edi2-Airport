@@ -204,5 +204,67 @@ public class FlightRouteRepository implements FlightRouteDAO {
 			}
 		}
 	}
+	@Override
+	public List<FlightRoute> searchByDestiny(int destinyID) throws Exception {
+		String sql = "SELECT * FROM FlightRoutes WHERE isDeleted = 0 and destiny = ?";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			List<FlightRoute> result = new ArrayList<FlightRoute>();
+			FlightRoute route = null;
+			ps.setInt(1, destinyID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				route = new FlightRoute();
+				route.loadFromRecordSet(rs);
+				result.add(route);
+			}
+			rs.close();
+			ps.close();
+			return result;
+		} catch (SQLException e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	@Override
+	public List<FlightRoute> searchByOrigin(int originID) throws Exception {
+		String sql = "SELECT * FROM FlightRoutes WHERE isDeleted = 0 and origin = ?";
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			List<FlightRoute> result = new ArrayList<FlightRoute>();
+			FlightRoute route = null;
+			ps.setInt(1, originID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				route = new FlightRoute();
+				route.loadFromRecordSet(rs);
+				result.add(route);
+			}
+			rs.close();
+			ps.close();
+			return result;
+		} catch (SQLException e) {
+			System.out.println(e.toString());			
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
 
 }

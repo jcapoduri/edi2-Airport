@@ -11,47 +11,47 @@ import org.springframework.stereotype.Service;
 @Service
 public class FlightRouteManager implements IFlightRouteManager {
   @Autowired
-  protected FlightRouteDAO airlineRepository; 
+  protected FlightRouteDAO flightRouteRepository; 
 
   @Override
   public List<FlightRoute> getAll() throws Exception {
-    return this.airlineRepository.getAll();
+    return this.flightRouteRepository.getAll();
   }
 
   @Override
   public FlightRoute getById(int id) throws Exception {
-    return this.airlineRepository.getById(id);
+    return this.flightRouteRepository.getById(id);
   }
 
   @Override
   public FlightRoute getByName(String id) {
-    return this.airlineRepository.getByName(id);
+    return this.flightRouteRepository.getByName(id);
   }
 
   @Override
   public List<FlightRoute> search(String needle) {
-    return this.airlineRepository.search(needle);
+    return this.flightRouteRepository.search(needle);
   }
 
   @Override
   public FlightRoute save(FlightRoute bean) {
-    return this.airlineRepository.save(bean);
+    return this.flightRouteRepository.save(bean);
   }
 
   @Override
   public void update(FlightRoute bean) {
-    this.airlineRepository.update(bean);
+    this.flightRouteRepository.update(bean);
 
   }
 
   @Override
   public void remove(FlightRoute bean) {
-    this.airlineRepository.remove(bean);
+    this.flightRouteRepository.remove(bean);
   }
 
   @Override
   public void remove(int id) {
-    this.airlineRepository.remove(id);
+	this.flightRouteRepository.remove(id);
   }
 
 }

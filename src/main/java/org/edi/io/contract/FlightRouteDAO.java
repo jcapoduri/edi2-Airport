@@ -9,6 +9,8 @@ public interface FlightRouteDAO {
 	public FlightRoute getById(int id)  throws Exception ;
 	public FlightRoute getByName(String id);
 	public List<FlightRoute> search(String needle);
+	public List<FlightRoute> searchByDestiny(int destinyID) throws Exception;
+	public List<FlightRoute> searchByOrigin(int destinyID) throws Exception;
 	public FlightRoute save(FlightRoute bean);
 	public void update(FlightRoute bean);
 	public void remove(FlightRoute bean);

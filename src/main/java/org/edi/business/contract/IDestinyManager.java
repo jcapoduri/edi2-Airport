@@ -12,5 +12,5 @@ public interface IDestinyManager {
   public Destiny save(Destiny bean);
   public void update(Destiny bean);
   public void remove(Destiny bean);
-  public void remove(int id);
+  public void remove(int id) throws Exception;
 }

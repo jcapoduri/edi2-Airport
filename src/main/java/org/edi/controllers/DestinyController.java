@@ -3,6 +3,7 @@ package org.edi.controllers;
 import java.util.List;
 
 import org.edi.business.contract.IDestinyManager;
+import org.edi.controllers.exceptions.AirportBasicException;
 import org.edi.entities.Destiny;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,7 +28,7 @@ public class DestinyController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 	
@@ -38,7 +39,7 @@ public class DestinyController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 	
@@ -49,7 +50,7 @@ public class DestinyController {
         	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();			
+			throw new AirportBasicException(e.getMessage());	
 		}
     }
 	
@@ -70,7 +71,7 @@ public class DestinyController {
 			this.destinyRepo.remove(destinyId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();			
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 }
