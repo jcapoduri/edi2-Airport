@@ -11,30 +11,31 @@
     var vm = this;
 
     vm.allflights = [];
+    function update() {
+      var flights = FlightResource.query(),
+          airlines = AirlineResource.query(),
+          routes = FlightRouteResource.query();
 
-    var flights = FlightResource.query(),
-        airlines = AirlineResource.query(),
-        routes = FlightRouteResource.query();
+      $q.all([
+        flights.$promise,
+        airlines.$promise,
+        routes.$promise
+      ]).then(function(data) {
+        var flights = data[0],
+            airlines = data[1],
+            routes = data[2];
 
-    $q.all([
-      flights.$promise,
-      airlines.$promise,
-      routes.$promise
-    ]).then(function(data) {
-      var flights = data[0],
-          airlines = data[1],
-          routes = data[2];
-
-      vm.allflights = flights.map(function(flight) {
-        var route = routes.filter(function(x) { return x.id = flight.idFlightRoute; })[0],
-            airline = airlines.filter(function(x) { return x.id = flight.idAirline; })[0];
-        
-        flight.route = route.code;
-        flight.airline = airline.name + '(' + airline.code + ')';
-        flight.backwads = flight.backwads ? 'Vuelta' : 'Ida';
-        return flight;
+        vm.allflights = flights.map(function(flight) {
+          var route = routes.filter(function(x) { return x.id = flight.idFlightRoute; })[0],
+              airline = airlines.filter(function(x) { return x.id = flight.idAirline; })[0];
+          
+          flight.route = route.code;
+          flight.airline = airline.name + '(' + airline.code + ')';
+          flight.backwads = flight.backwads ? 'Vuelta' : 'Ida';
+          return flight;
+        });
       });
-    });
+    };
 
     vm.deleteItem = function(item) {
       var alertOptions = {
@@ -44,9 +45,11 @@
           bodyText: 'Esta a punto de eliminar '+ item.name+', esta usted seguro?'
       };
       alertService.show(alertOptions).then(function() {
-        item.$delete();
+        item.$delete().then(update);
       });
     };
+
+    update();
 
   }
 })();

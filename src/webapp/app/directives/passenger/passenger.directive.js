@@ -30,8 +30,9 @@
 
         vm.save = function() {
           if (!$scope.passengerForm.$invalid) {
-            vm.passenger.$save();
-            $scope.$emit('save');
+            vm.passenger.$save().then(function() {
+              $scope.$emit('save');
+            });
           };
         }
 

@@ -29,8 +29,9 @@
 
         vm.save = function() {
           if (!$scope.destinyForm.$invalid) {
-            vm.destiny.$save();
-            $scope.$emit('save');
+            vm.destiny.$save().then(function() {
+              $scope.$emit('save');
+            });
           }
         }
 

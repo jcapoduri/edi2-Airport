@@ -30,8 +30,9 @@
 
         vm.save = function() {
           if (!$scope.airlineForm.$invalid) {
-            vm.airline.$save();
-            $scope.$emit('save');
+            vm.airline.$save().then(function() {
+              $scope.$emit('save');
+            });
           };
         }
 

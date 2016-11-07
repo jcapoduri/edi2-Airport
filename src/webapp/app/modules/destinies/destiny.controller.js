@@ -11,9 +11,11 @@
     var vm = this;
 
     vm.alldestinies = [];
-    DestinyResource.query(function(data){
-      vm.alldestinies = data;
-    });
+    function update() {
+      DestinyResource.query(function(data){
+        vm.alldestinies = data;
+      });
+    };
 
     vm.deleteItem = function(item) {
       var alertOptions = {
@@ -23,9 +25,10 @@
             bodyText: 'Esta a punto de eliminar '+ item.name+', esta usted seguro?'
         };
       alertService.show(alertOptions).then(function() {
-        item.$delete();
+        item.$delete().then(update);
       });
     };
 
+    update();
   }
 })();

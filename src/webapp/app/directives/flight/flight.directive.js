@@ -52,8 +52,9 @@
 
         vm.save = function() {
           if (!$scope.flightForm.$invalid) {
-            vm.flight.$save();
-            $scope.$emit('save');
+            vm.flight.$save().then(function() {
+              $scope.$emit('save');
+            });
           };
         }
 

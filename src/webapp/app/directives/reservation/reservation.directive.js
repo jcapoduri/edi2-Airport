@@ -37,8 +37,9 @@
 
 
         vm.save = function() {
-          vm.reservation.$save();
-          $scope.$emit('save');
+          vm.reservation.$save().then(function() {
+            $scope.$emit('save');
+          });
         }
 
         vm.cancel = function() {

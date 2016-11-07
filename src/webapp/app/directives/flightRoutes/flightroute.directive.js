@@ -34,8 +34,9 @@
 
 
         vm.save = function() {
-          vm.flightRoute.$save();
-          $scope.$emit('save');
+          vm.flightRoute.$save().then(function() {
+            $scope.$emit('save');
+          });
         }
 
         vm.cancel = function() {

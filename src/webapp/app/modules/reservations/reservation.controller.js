@@ -11,10 +11,11 @@
     var vm = this;
 
     vm.allreservations = [];
-    
-    ReservationResource.query(function(data){
-      vm.allairlines = data;
-    });
+    function update() {
+      ReservationResource.query(function(data){
+        vm.allairlines = data;
+      });
+    };
 
     vm.deleteItem = function(item) {
       var alertOptions = {
@@ -24,9 +25,10 @@
             bodyText: 'Esta a punto de eliminar '+ item.name+', esta usted seguro?'
         };
       alertService.show(alertOptions).then(function() {
-        item.$delete();
+        item.$delete().then(update);
       });
     };
 
+    update();
   }
 })();
