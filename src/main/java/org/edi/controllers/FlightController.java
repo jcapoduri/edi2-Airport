@@ -3,6 +3,7 @@ package org.edi.controllers;
 import java.util.List;
 
 import org.edi.business.contract.IFlightManager;
+import org.edi.controllers.exceptions.AirportBasicException;
 import org.edi.entities.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,7 +28,7 @@ public class FlightController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 	
@@ -49,7 +50,8 @@ public class FlightController {
         	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();			
+			e.printStackTrace();	
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 	
@@ -60,7 +62,8 @@ public class FlightController {
 			this.flightRepo.update(flight);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();			
+			e.printStackTrace();	
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 	
@@ -70,7 +73,8 @@ public class FlightController {
 			this.flightRepo.remove(flightId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();			
+			e.printStackTrace();
+			throw new AirportBasicException(e.getMessage());
 		}
     }
 }

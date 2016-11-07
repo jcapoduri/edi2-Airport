@@ -100,7 +100,7 @@ public class FlightRepository implements FlightDAO {
 
 	@Override
 	public Flight save(Flight bean) {
-		String sql = "INSERT INTO Flights (innerCode, idFlightRoute, idAirline, backwads) VALUES (?, ?, ?, ?); SELECT SCOPE_IDENTITY()";
+		String sql = "INSERT INTO Flights (innerCode, idFlightRoute, idAirline, backwards) VALUES (?, ?, ?, ?); SELECT SCOPE_IDENTITY()";
 		Connection conn = null;
 
 		try {
@@ -134,7 +134,7 @@ public class FlightRepository implements FlightDAO {
 
 	@Override
 	public void update(Flight bean) {
-		String sql = "UPDATE Flights SET innerCode = ?, idFlightRoute = ?, idAirline = ?, backwads = ?, modificationDate = GETDATE() WHERE id = ?;";
+		String sql = "UPDATE Flights SET innerCode = ?, idFlightRoute = ?, idAirline = ?, backwards = ?, modificationDate = GETDATE() WHERE id = ?;";
 		Connection conn = null;
 
 		try {

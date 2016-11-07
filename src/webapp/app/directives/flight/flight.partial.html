@@ -11,7 +11,8 @@
     <div class="form-group">
       <label for="inputFlightRoute" class="col-sm-2 control-label">Ruta de vuelo</label>
       <div class="col-sm-10">
-        <select type="text" class="form-control" ng-options="item.id as item.code for item in vm.flightroutes track by item.id" ng-model="vm.flight.idFlightRoute" id="inputFlightRoute" name="inputFlightRoute" required>
+        <select type="text" class="form-control" ng-model="vm.flight.idFlightRoute" ng-options="item.id as item.code for item in vm.flightroutes" id="inputFlightRoute" name="inputFlightRoute" required>   
+          <option>Seleccione una opcion</option>        
         </select>
         <p ng-show="flightForm.inputFlightRoute.$invalid" class="help-block">la ruta de vuelo es requerida.</p>
       </div>
@@ -19,8 +20,10 @@
     <div class="form-group">
       <label for="inputAirline" class="col-sm-2 control-label">Aerolinea</label>
       <div class="col-sm-10">
-        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.airlines track by item.id" ng-model="vm.flight.idAirline" id="inputAirline" name="inputAirline"></select>
-        <p ng-show="flightForm.inputFlightRoute.$invalid" class="help-block">la aerolinea es requerida.</p>
+        <select type="text" class="form-control" ng-model="vm.flight.idAirline" ng-options="item.id as item.name for item in vm.airlines" id="inputAirline" name="inputAirline">
+          <option>Seleccione una opcion</option>  
+        </select>
+        <p ng-show="flightForm.inputAirline.$invalid" class="help-block">la aerolinea es requerida.</p>
       </div>
     </div>
     <div class="form-group">

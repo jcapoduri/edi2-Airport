@@ -9,13 +9,13 @@
     <div class="form-group">
       <label for="inputOrigen" class="col-sm-2 control-label">Origen</label>
       <div class="col-sm-10">
-        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.origins track by item.id" ng-model="vm.flightRoute.origin" id="inputOrigen"></select>
+        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.origins" ng-model="vm.flightRoute.origin" id="inputOrigen"></select>
       </div>
     </div>
     <div class="form-group">
       <label for="inputDestino" class="col-sm-2 control-label">Destino</label>
       <div class="col-sm-10">
-        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.destinies track by item.id" ng-model="vm.flightRoute.destiny" id="inputDestino"></select>
+        <select type="text" class="form-control" ng-options="item.id as item.name for item in vm.destinies" ng-model="vm.flightRoute.destiny" id="inputDestino"></select>
       </div>
     </div>
     <div class="form-group">

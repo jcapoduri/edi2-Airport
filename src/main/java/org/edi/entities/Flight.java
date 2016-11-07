@@ -46,7 +46,5 @@ public class Flight extends AirportEntity {
 
 	public void setBackwards(Boolean backwards) {
 		this.backwards = backwards;
-	}
-	
-	
+	}	
 }

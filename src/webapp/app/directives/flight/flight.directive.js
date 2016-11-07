@@ -13,7 +13,7 @@
         controllerAs: 'vm',
         controller: AirportEditorController,
         scope: {
-          flight: '=?model'
+          flight: '=model'
         },
         bindToController: true
     };
@@ -27,12 +27,26 @@
     function AirportEditorController($scope, FlightRouteResource, AirlineResource) {
         var vm = this;
 
+        vm.flightroutes = [{id:0, code:''}];
+        vm.airlines = [{id:0, name:''}];
+        vm.idFlightRoute = 0;
+        vm.idAirline = 0;
+
+        if (!vm.flight) return;
+
+        vm.idFlightRoute = vm.flight.idFlightRoute;
+        vm.idAirline = vm.flight.idAirline;
+
         FlightRouteResource.query(function(data) {
+          var id = vm.flight.idFlightRoute;
           vm.flightroutes = angular.copy(data);
+          vm.flight.idFlightRoute = id;
         });
 
         AirlineResource.query(function(data) {
+          var id = vm.flight.idAirline;
           vm.airlines = angular.copy(data);
+          vm.flight.idAirline = id;
         });
 
 
